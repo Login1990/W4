@@ -11,18 +11,16 @@ async function fetchRecipe(){
         const instructions = document.getElementById("instructions")
         const ingridients = document.getElementById("ingridients")
         name.innerText = ("Name: pizza")
-        instructions.innerText = data["instructions"]
-        ingridients.innerText = data["ingridients"]
-        /*data["instructions"].forEach(element => {
+        data["instructions"].forEach(element => {
             let li = document.createElement("li")
             li.innerText = element
             instructions.appendChild(li)
-        });*/
-        /*data["ingridients"].forEach(element => {
+        });
+        data["ingridients"].forEach(element => {
             let li = document.createElement("li")
             li.innerText = element
             ingridients.appendChild(li)
-        });*/
+        });
     } catch(e){
         console.error(e)
     }
