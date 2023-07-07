@@ -10,7 +10,7 @@ async function fetchRecipe(){
         const name = document.getElementById("recipe-name")
         const instructions = document.getElementById("instructions")
         const ingridients = document.getElementById("ingridients")
-        name.innerText = ("Name: pizza")
+        name.innerText = ("pizza")
         data["instructions"].forEach(element => {
             let li = document.createElement("li")
             li.innerText = element
