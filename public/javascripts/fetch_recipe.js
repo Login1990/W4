@@ -1,4 +1,4 @@
-/*async function fetchRecipe(){
+async function fetchRecipe(){
     try{
         const response = await fetch('/recipe/pizza', {
             method: 'GET',
@@ -10,15 +10,21 @@
         const name = document.getElementById("recipe-name")
         const instructions = document.getElementById("instructions")
         const ingridients = document.getElementById("ingridients")
-        name.innerText("Name: pizza")
+        name.innerText = ("Name: pizza")
+        const data_instructions = data["instructions"]
+        console.log(data_instructions)
         data["instructions"].forEach(element => {
-            instructions.appendChild("<li>${element}</li>")
+            let li = document.createElement("li")
+            li.innerText = element
+            instructions.appendChild(li)
         });
         data["ingridients"].forEach(element => {
-            ingridients.appendChild("<li>${element}</li>")
+            let li = document.createElement("li")
+            li.innerText = element
+            ingridients.appendChild(li)
         });
     } catch(e){
         console.error(e)
     }
 }
-fetchRecipe()*/
+fetchRecipe()
