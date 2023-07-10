@@ -10,7 +10,7 @@ router.get("/recipe/:food", (req,res,next) => {
   let feedback = {
     name: req.params.food,
     instructions: ["boil water","beans","graveyard"],
-    ingridients: ["beans","marmite","blakc troufel oil"]
+    ingredients: ["beans","marmite","blakc troufel oil"]
   }
   return res.json(feedback)
 })
