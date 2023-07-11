@@ -1,3 +1,5 @@
+
+
 async function fetchRecipe(){
     try{
         const response = await fetch('/recipe/pizza', {
@@ -25,4 +27,53 @@ async function fetchRecipe(){
         console.error(e)
     }
 }
-fetchRecipe()
+async function postRecipe(recipeJSON){
+    try{
+        const response = await fetch("/recipe/",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(recipeJSON)
+        })
+    } catch(e){
+        console.error(e)
+    }
+}
+
+let ingredient_list_for_post = []
+let instruction_list_for_post = []
+
+window.onload = function(){
+    fetchRecipe()
+    const confirm_button = document.getElementById("submit")
+    const add_ingredient_button = document.getElementById("add-ingredient")
+    const add_instruction_button = document.getElementById("add-instruction")
+    add_ingredient_button.addEventListener("click", function(){
+        /*const name = document.getElementById("name-text")
+        const ingredients = document.getElementById("ingredients-text")*/
+        const ingredient_list = document.getElementById("waiting-ingredients")
+        const textarea = document.getElementById("ingredients-text")
+        const li = document.createElement("li")
+        li.innerText = textarea.value
+        ingredient_list.appendChild(li)
+        ingredient_list_for_post.push(textarea.value)
+    })
+    add_instruction_button.addEventListener("click", function(){
+        const instruction_list = document.getElementById("waiting-instructions")
+        const textarea = document.getElementById("instructions-text")
+        const li = document.createElement("li")
+        li.innerText = textarea.value
+        instruction_list.appendChild(li)
+        instruction_list_for_post.push(textarea.value)
+    })
+    confirm_button.addEventListener("click", async function(){
+        let JSON_to_send = {
+            name: document.getElementById("name-text").value,
+            ingredients: ingredient_list_for_post,
+            instructions: instruction_list_for_post
+        }
+        postRecipe(JSON_to_send)
+    })
+
+}

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+let recipes = {}
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -13,6 +14,11 @@ router.get("/recipe/:food", (req,res,next) => {
     ingredients: ["beans","marmite","blakc troufel oil"]
   }
   return res.json(feedback)
+})
+
+router.post("/recipe/", (req,res,next) => {
+  recipes[req.body.name] = req.body
+  return res.json(req.body)
 })
 
 module.exports = router;
