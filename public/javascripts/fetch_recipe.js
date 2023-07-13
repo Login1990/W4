@@ -44,7 +44,9 @@ async function postRecipe(recipeJSON){
 async function postImage(images){
     try{
         const data = new FormData()
-        data.append("images", images)
+        for (let i = 0; i < images.length; i++) {
+            data.append("images", images[i]);
+        }
         const response = await fetch("/images",{
             method: "POST",
             body: data
