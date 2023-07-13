@@ -41,6 +41,19 @@ async function postRecipe(recipeJSON){
     }
 }
 
+async function postImage(images){
+    try{
+        const data = new FormData()
+        data.append("images", images)
+        const response = await fetch("/images",{
+            method: "POST",
+            body: data
+        })
+    } catch(e){
+        console.error(e)
+    }
+}
+
 let ingredient_list_for_post = []
 let instruction_list_for_post = []
 
@@ -68,11 +81,13 @@ window.onload = function(){
         instruction_list_for_post.push(textarea.value)
     })
     confirm_button.addEventListener("click", async function(){
+        const images = document.getElementById("image-input").files
         let JSON_to_send = {
             name: document.getElementById("name-text").value,
             ingredients: ingredient_list_for_post,
             instructions: instruction_list_for_post
         }
+        postImage(images)
         postRecipe(JSON_to_send)
     })
 

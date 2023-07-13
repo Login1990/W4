@@ -21,4 +21,8 @@ router.post("/recipe/", (req,res,next) => {
   return res.json(req.body)
 })
 
+router.post("/images", (req,res,next) =>{
+  res.send("Hi")
+})
+
 module.exports = router;
